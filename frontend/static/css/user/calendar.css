@@ -1,0 +1,228 @@
+
+/* =========================================
+   CALENDARIO Y RESERVA DE CITAS
+========================================= */
+
+.calendar-welcome {
+    margin: 30px 0;
+}
+
+.calendar-welcome h2 {
+    color: var(--user-text);
+    font-size: 25px;
+    margin-bottom: 10px;
+}
+
+.calendar-welcome p {
+    color: var(--user-muted);
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+
+/* =========================================
+   CONTENEDOR DE RESERVA
+========================================= */
+
+.booking-section {
+    background: var(--user-white);
+    border: 1px solid var(--user-border);
+    border-radius: 16px;
+    padding: 30px;
+    max-width: 850px;
+    box-shadow: 0 4px 15px rgba(33, 19, 79, 0.04);
+}
+
+.booking-form {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+
+/* =========================================
+   CAMPOS DEL FORMULARIO
+========================================= */
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+}
+
+.form-group label {
+    color: var(--user-text);
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.form-group select,
+.form-group input {
+    width: 100%;
+    min-height: 48px;
+    padding: 12px 15px;
+    border: 1px solid var(--user-border);
+    border-radius: 9px;
+    background: var(--user-white);
+    color: var(--user-text);
+    font-family: inherit;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-group select:focus,
+.form-group input:focus {
+    border-color: var(--user-purple);
+    box-shadow: 0 0 0 3px rgba(105, 56, 211, 0.10);
+}
+
+.form-group select:disabled,
+.form-group input:disabled {
+    background: #F3F1F7;
+    color: #9993A8;
+    cursor: not-allowed;
+}
+
+
+/* =========================================
+   HORARIOS DISPONIBLES
+========================================= */
+
+.available-slots {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    min-height: 55px;
+    padding: 15px;
+    background: #FAF9FD;
+    border: 1px solid var(--user-border);
+    border-radius: 10px;
+}
+
+.slots-placeholder {
+    width: 100%;
+    margin: 0;
+    color: var(--user-muted);
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+/* BOTONES DE HORARIOS */
+
+.slot-button {
+    min-width: 95px;
+    padding: 11px 16px;
+    border: 1px solid var(--user-border);
+    border-radius: 9px;
+    background: #FFFFFF;
+    color: var(--user-purple-dark);
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.slot-button:hover {
+    border-color: var(--user-purple);
+    background: var(--user-lavender);
+}
+
+.slot-button.selected {
+    background: var(--user-purple);
+    border-color: var(--user-purple);
+    color: #FFFFFF;
+}
+
+/* =========================================
+   MENSAJES
+========================================= */
+
+.booking-message {
+    display: none;
+    padding: 13px 15px;
+    border-radius: 9px;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.booking-message.success {
+    display: block;
+    background: #E9F8EF;
+    color: #237A45;
+    border: 1px solid #BCE8CB;
+}
+
+.booking-message.error {
+    display: block;
+    background: #FDECEC;
+    color: #B42318;
+    border: 1px solid #F5C2C0;
+}
+
+.booking-message.info {
+    display: block;
+    background: var(--user-lavender);
+    color: var(--user-purple-dark);
+    border: 1px solid var(--user-border);
+}
+
+
+/* =========================================
+   BOTÓN DE RESERVA
+========================================= */
+
+.booking-form .primary-button {
+    width: 100%;
+    min-height: 50px;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    transition: background 0.2s, opacity 0.2s;
+}
+
+.booking-form .primary-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 750px) {
+
+    .calendar-welcome {
+        margin: 22px 0;
+    }
+
+    .calendar-welcome h2 {
+        font-size: 21px;
+    }
+
+    .booking-section {
+        padding: 22px;
+    }
+
+}
+
+@media (max-width: 480px) {
+
+    .booking-section {
+        padding: 17px;
+        border-radius: 12px;
+    }
+
+    .booking-form {
+        gap: 20px;
+    }
+
+    .form-group select,
+    .form-group input {
+        font-size: 13px;
+    }
+
+}

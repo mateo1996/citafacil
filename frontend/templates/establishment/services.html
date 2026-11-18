@@ -1,0 +1,586 @@
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Servicios | CitaFácil</title>
+
+    <!-- CSS DEL MÓDULO -->
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/establishment/services.css') }}">
+
+</head>
+
+<body>
+
+    <div class="dashboard">
+
+        <!-- =========================================
+             MENÚ LATERAL
+        ========================================== -->
+
+        <aside class="sidebar">
+
+            <div class="sidebar-brand">
+
+                <h2>✦ Cita<span>Fácil</span></h2>
+
+                <p id="establishmentName">
+                    Panel de establecimiento
+                </p>
+
+            </div>
+
+
+            <nav class="sidebar-nav">
+
+                <a href="/establishment" class="nav-link">
+                    <span>⌂</span>
+                    Inicio
+                </a>
+
+                <a href="/establishment/appointments" class="nav-link">
+                    <span>▦</span>
+                    Citas
+                </a>
+
+                <a href="/establishment/clients" class="nav-link">
+                    <span>♙</span>
+                    Clientes
+                </a>
+
+                <a href="/establishment/services" class="nav-link active">
+                    <span>✦</span>
+                    Servicios
+                </a>
+
+                <a href="/establishment/schedules" class="nav-link">
+                    <span>◷</span>
+                    Horarios
+                </a>
+
+                <a href="#" class="nav-link">
+                    <span>⚙</span>
+                    Configuración
+                </a>
+
+            </nav>
+
+
+            <!-- CERRAR SESIÓN -->
+            <div class="sidebar-bottom">
+
+                <button
+                    type="button"
+                    class="logout-button"
+                    id="logoutButton"
+                >
+                    ⇥ Cerrar sesión
+                </button>
+
+            </div>
+
+        </aside>
+
+
+        <!-- =========================================
+             CONTENIDO PRINCIPAL
+        ========================================== -->
+
+        <main class="main-content">
+
+
+            <!-- ENCABEZADO -->
+            <header class="topbar">
+
+                <div class="topbar-heading">
+
+                    <p class="topbar-subtitle">
+                        Panel de administración
+                    </p>
+
+                    <h1>Servicios</h1>
+
+                </div>
+
+
+                <!-- USUARIO -->
+                <div class="topbar-user">
+
+                    <div class="user-avatar" id="userAvatar">
+                        A
+                    </div>
+
+                    <div class="user-information">
+
+                        <h2 id="adminName">
+                            Administrador
+                        </h2>
+
+                        <p>Administrador del establecimiento</p>
+
+                    </div>
+
+                </div>
+
+            </header>
+
+
+
+            <!-- =====================================
+                 INTRODUCCIÓN Y ACCIÓN PRINCIPAL
+            ====================================== -->
+
+            <section class="services-intro">
+
+                <div class="section-heading">
+
+                    <h2>Administración de servicios</h2>
+
+                    <p>
+                        Gestiona los servicios que ofrece tu establecimiento,
+                        sus precios y tiempos de atención.
+                    </p>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="primary-button"
+                    id="addServiceButton"
+                >
+                    <span>＋</span>
+                    Agregar servicio
+                </button>
+
+            </section>
+
+
+
+            <!-- =====================================
+                 ESTADÍSTICAS DE SERVICIOS
+            ====================================== -->
+
+            <section class="statistics-section">
+
+                <div class="statistics-grid">
+
+
+                    <!-- TOTAL -->
+                    <article class="stat-card">
+
+                        <div class="stat-icon">
+                            ✦
+                        </div>
+
+                        <div class="stat-information">
+
+                            <p>Total de servicios</p>
+
+                            <h3 id="totalServices">
+                                0
+                            </h3>
+
+                            <span>Registrados</span>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- ACTIVOS -->
+                    <article class="stat-card">
+
+                        <div class="stat-icon active-icon">
+                            ✓
+                        </div>
+
+                        <div class="stat-information">
+
+                            <p>Servicios activos</p>
+
+                            <h3 id="activeServices">
+                                0
+                            </h3>
+
+                            <span>Disponibles para clientes</span>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- INACTIVOS -->
+                    <article class="stat-card">
+
+                        <div class="stat-icon inactive-icon">
+                            ◷
+                        </div>
+
+                        <div class="stat-information">
+
+                            <p>Servicios inactivos</p>
+
+                            <h3 id="inactiveServices">
+                                0
+                            </h3>
+
+                            <span>No disponibles</span>
+
+                        </div>
+
+                    </article>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =====================================
+                 LISTADO DE SERVICIOS
+            ====================================== -->
+
+            <section class="services-section">
+
+
+                <!-- ENCABEZADO -->
+                <div class="section-heading">
+
+                    <h2>Mis servicios</h2>
+
+                    <p>
+                        Consulta y administra los servicios de tu establecimiento.
+                    </p>
+
+                </div>
+
+
+
+                <!-- BUSCADOR Y FILTRO -->
+                <div class="services-toolbar">
+
+                    <div class="search-container">
+
+                        <span>⌕</span>
+
+                        <input
+                            type="search"
+                            id="searchService"
+                            placeholder="Buscar servicio..."
+                            aria-label="Buscar servicio"
+                        >
+
+                    </div>
+
+
+                    <div class="filter-container">
+
+                        <label for="filterStatus">
+                            Estado:
+                        </label>
+
+                        <select id="filterStatus">
+
+                            <option value="todos">
+                                Todos
+                            </option>
+
+                            <option value="1">
+                                Activos
+                            </option>
+
+                            <option value="0">
+                                Inactivos
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- TABLA -->
+                <div class="services-table-container">
+
+                    <table class="services-table">
+
+                        <thead>
+
+                            <tr>
+
+                                <th>Servicio</th>
+
+                                <th>Duración</th>
+
+                                <th>Precio</th>
+
+                                <th>Estado</th>
+
+                                <th>Acciones</th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody id="servicesTableBody">
+
+                            <!--
+                                Los servicios se cargarán
+                                dinámicamente mediante JavaScript.
+                            -->
+
+                        </tbody>
+
+                    </table>
+
+
+                    <!-- ESTADO VACÍO -->
+                    <div class="empty-state" id="emptyServices">
+
+                        <div class="empty-icon">
+                            ✦
+                        </div>
+
+                        <h3>No hay servicios registrados</h3>
+
+                        <p>
+                            Agrega tu primer servicio para comenzar
+                            a administrar la oferta de tu establecimiento.
+                        </p>
+
+                    </div>
+
+
+                    <!-- CARGANDO -->
+                    <div class="loading-state" id="loadingServices">
+
+                        <p>Cargando servicios...</p>
+
+                    </div>
+
+
+                    <!-- MENSAJE DE ERROR -->
+                    <div class="error-state" id="servicesError" hidden>
+
+                        <p>
+                            No fue posible cargar los servicios.
+                        </p>
+
+                        <button
+                            type="button"
+                            class="secondary-button"
+                            id="retryServicesButton"
+                        >
+                            Intentar nuevamente
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =====================================
+                 MODAL AGREGAR / EDITAR SERVICIO
+            ====================================== -->
+
+            <div
+                class="modal-overlay"
+                id="serviceModal"
+                aria-hidden="true"
+                hidden
+            >
+
+                <div
+                    class="service-modal"
+                    role="dialog"
+                    aria-modal="true"
+                    aria-labelledby="modalTitle"
+                >
+
+
+                    <!-- ENCABEZADO DEL MODAL -->
+                    <div class="modal-header">
+
+                        <div>
+
+                            <h2 id="modalTitle">
+                                Agregar servicio
+                            </h2>
+
+                            <p>
+                                Completa la información del servicio.
+                            </p>
+
+                        </div>
+
+
+                        <button
+                            type="button"
+                            class="modal-close"
+                            id="closeServiceModal"
+                            aria-label="Cerrar ventana"
+                        >
+                            ×
+                        </button>
+
+                    </div>
+
+
+
+                    <!-- FORMULARIO -->
+                    <form id="serviceForm">
+
+                        <input
+                            type="hidden"
+                            id="serviceId"
+                        >
+
+
+                        <!-- NOMBRE -->
+                        <div class="form-group">
+
+                            <label for="serviceName">
+                                Nombre del servicio
+                            </label>
+
+                            <input
+                                type="text"
+                                id="serviceName"
+                                name="nombre"
+                                maxlength="100"
+                                placeholder="Ej. Consulta general"
+                                required
+                            >
+
+                        </div>
+
+
+
+                        <!-- DESCRIPCIÓN -->
+                        <div class="form-group">
+
+                            <label for="serviceDescription">
+                                Descripción
+                            </label>
+
+                            <textarea
+                                id="serviceDescription"
+                                name="descripcion"
+                                maxlength="500"
+                                rows="3"
+                                placeholder="Describe brevemente el servicio..."
+                            ></textarea>
+
+                        </div>
+
+
+
+                        <!-- DURACIÓN -->
+                        <div class="form-group">
+
+                            <label for="serviceDuration">
+                                Duración (minutos)
+                            </label>
+
+                            <input
+                                type="number"
+                                id="serviceDuration"
+                                name="duracion_minutos"
+                                min="1"
+                                max="1440"
+                                step="1"
+                                placeholder="Ej. 30"
+                                required
+                            >
+
+                        </div>
+
+
+
+                        <!-- PRECIO -->
+                        <div class="form-group">
+
+                            <label for="servicePrice">
+                                Precio
+                            </label>
+
+                            <input
+                                type="number"
+                                id="servicePrice"
+                                name="precio"
+                                min="0"
+                                max="99999999.99"
+                                step="0.01"
+                                placeholder="Ej. 50000"
+                                required
+                            >
+
+                        </div>
+
+
+
+                        <!-- MENSAJE -->
+                        <div
+                            class="form-message"
+                            id="serviceFormMessage"
+                            role="alert"
+                            hidden
+                        ></div>
+
+
+
+                        <!-- BOTONES -->
+                        <div class="modal-actions">
+
+                            <button
+                                type="button"
+                                class="secondary-button"
+                                id="cancelServiceButton"
+                            >
+                                Cancelar
+                            </button>
+
+
+                            <button
+                                type="submit"
+                                class="primary-button"
+                                id="saveServiceButton"
+                            >
+                                Guardar servicio
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </main>
+
+    </div>
+
+
+
+    <!-- =========================================
+         JAVASCRIPT
+    ========================================== -->
+
+    <script src="{{ url_for('static', filename='js/api.js') }}"></script>
+
+    <script src="{{ url_for('static', filename='js/establishment/services.js') }}"></script>
+
+</body>
+</html>

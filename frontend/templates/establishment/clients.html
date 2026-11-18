@@ -1,0 +1,360 @@
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Clientes | CitaFácil</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/establishment/clients.css') }}">
+</head>
+
+<body>
+
+    <div class="dashboard">
+
+        <!-- MENÚ LATERAL -->
+        <aside class="sidebar">
+
+            <div class="sidebar-brand">
+                <h2>✦ Cita<span>Fácil</span></h2>
+                <p id="establishmentName">Panel de establecimiento</p>
+            </div>
+
+            <nav class="sidebar-nav">
+
+                <a href="/establishment" class="nav-link">
+                    <span>⌂</span>
+                    Inicio
+                </a>
+
+                <a href="/establishment/appointments" class="nav-link">
+                    <span>▦</span>
+                    Citas
+                </a>
+
+                <a href="/establishment/clients" class="nav-link active">
+                    <span>♙</span>
+                    Clientes
+                </a>
+
+                <a href="/establishment/services" class="nav-link">
+                    <span>✦</span>
+                    Servicios
+                </a>
+
+                <a href="/establishment/schedules" class="nav-link">
+                    <span>◷</span>
+                    Horarios
+                </a>
+
+                <a href="#" class="nav-link">
+                    <span>⚙</span>
+                    Configuración
+                </a>
+
+            </nav>
+
+            <div class="sidebar-bottom">
+                <button type="button" class="logout-button" id="logoutButton">
+                    ⇥ Cerrar sesión
+                </button>
+            </div>
+
+        </aside>
+
+
+        <!-- CONTENIDO PRINCIPAL -->
+        <main class="main-content">
+
+            <!-- ENCABEZADO -->
+            <header class="topbar">
+
+                <div class="topbar-heading">
+                    <p class="topbar-subtitle">Panel de administración</p>
+                    <h1>Clientes</h1>
+                </div>
+
+                <div class="topbar-user">
+
+                    <div class="user-avatar" id="userAvatar">A</div>
+
+                    <div class="user-information">
+                        <h2 id="adminName">Administrador</h2>
+                        <p>Administrador del establecimiento</p>
+                    </div>
+
+                </div>
+
+            </header>
+
+
+            <!-- INTRODUCCIÓN -->
+            <section class="clients-intro">
+
+                <div class="section-heading">
+                    <h2>Administración de clientes</h2>
+                    <p>
+                        Consulta y administra la información de las personas
+                        que han registrado sus datos en tu establecimiento.
+                    </p>
+                </div>
+
+                <button type="button"
+                        class="primary-button"
+                        id="addClientButton">
+                    <span>＋</span>
+                    Agregar cliente
+                </button>
+
+            </section>
+
+
+            <!-- ESTADÍSTICAS -->
+            <section class="statistics-section">
+
+                <div class="statistics-grid">
+
+                    <article class="stat-card">
+                        <div class="stat-icon">♙</div>
+                        <div class="stat-information">
+                            <p>Total de clientes</p>
+                            <h3 id="totalClients">0</h3>
+                            <span>Clientes registrados</span>
+                        </div>
+                    </article>
+
+                    <article class="stat-card">
+                        <div class="stat-icon active-icon">✉</div>
+                        <div class="stat-information">
+                            <p>Con correo electrónico</p>
+                            <h3 id="clientsWithEmail">0</h3>
+                            <span>Información de contacto</span>
+                        </div>
+                    </article>
+
+                    <article class="stat-card">
+                        <div class="stat-icon inactive-icon">☎</div>
+                        <div class="stat-information">
+                            <p>Sin correo electrónico</p>
+                            <h3 id="clientsWithoutEmail">0</h3>
+                            <span>Registrados con teléfono</span>
+                        </div>
+                    </article>
+
+                </div>
+
+            </section>
+
+
+            <!-- LISTADO DE CLIENTES -->
+            <section class="clients-section">
+
+                <div class="section-heading">
+                    <h2>Mis clientes</h2>
+                    <p>
+                        Aquí encontrarás los clientes registrados
+                        en tu establecimiento.
+                    </p>
+                </div>
+
+
+                <!-- BUSCADOR -->
+                <div class="clients-toolbar">
+
+                    <div class="search-container">
+                        <span>⌕</span>
+                        <input
+                            type="search"
+                            id="searchClient"
+                            placeholder="Buscar por nombre o teléfono..."
+                            aria-label="Buscar cliente por nombre o teléfono"
+                        >
+                    </div>
+
+                    <button type="button"
+                            class="secondary-button refresh-button"
+                            id="refreshClientsButton">
+                        ↻ Actualizar
+                    </button>
+
+                </div>
+
+
+                <!-- TABLA -->
+                <div class="clients-table-container">
+
+                    <table class="clients-table">
+
+                        <thead>
+                            <tr>
+                                <th>Cliente</th>
+                                <th>Teléfono</th>
+                                <th>Correo electrónico</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="clientsTableBody">
+                            <!-- Clientes cargados mediante JavaScript -->
+                        </tbody>
+
+                    </table>
+
+
+                    <!-- ESTADO VACÍO -->
+                    <div class="empty-state" id="emptyClients" hidden>
+
+                        <div class="empty-icon">♙</div>
+
+                        <h3 id="emptyClientsTitle">
+                            No hay clientes registrados
+                        </h3>
+
+                        <p id="emptyClientsDescription">
+                            Cuando registres clientes, aparecerán en esta sección.
+                        </p>
+
+                    </div>
+
+
+                    <!-- CARGANDO -->
+                    <div class="loading-state" id="loadingClients">
+                        <p>Cargando clientes...</p>
+                    </div>
+
+
+                    <!-- ERROR -->
+                    <div class="error-state" id="clientsError" hidden>
+                        <p id="clientsErrorMessage">
+                            No fue posible cargar los clientes.
+                        </p>
+
+                        <button type="button"
+                                class="secondary-button"
+                                id="retryClientsButton">
+                            Intentar nuevamente
+                        </button>
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- MODAL REGISTRAR / EDITAR -->
+            <div class="modal-overlay"
+                 id="clientModal"
+                 aria-hidden="true"
+                 hidden>
+
+                <div class="client-modal"
+                     role="dialog"
+                     aria-modal="true"
+                     aria-labelledby="modalTitle">
+
+                    <div class="modal-header">
+
+                        <div>
+                            <h2 id="modalTitle">Agregar cliente</h2>
+                            <p>Completa la información del cliente.</p>
+                        </div>
+
+                        <button type="button"
+                                class="modal-close"
+                                id="closeClientModal"
+                                aria-label="Cerrar ventana">
+                            ×
+                        </button>
+
+                    </div>
+
+
+                    <form id="clientForm">
+
+                        <input type="hidden" id="clientId">
+
+                        <div class="form-group">
+                            <label for="clientName">Nombre completo</label>
+                            <input
+                                type="text"
+                                id="clientName"
+                                name="nombre"
+                                maxlength="100"
+                                placeholder="Ej. María Rodríguez"
+                                autocomplete="name"
+                                required
+                            >
+                        </div>
+
+                        <div class="form-group">
+                            <label for="clientPhone">Teléfono</label>
+                            <input
+                                type="tel"
+                                id="clientPhone"
+                                name="telefono"
+                                maxlength="20"
+                                placeholder="Ej. 3001234567"
+                                autocomplete="tel"
+                                required
+                            >
+                        </div>
+
+                        <div class="form-group">
+                            <label for="clientEmail">
+                                Correo electrónico
+                                <span class="optional-label">(Opcional)</span>
+                            </label>
+                            <input
+                                type="email"
+                                id="clientEmail"
+                                name="correo"
+                                maxlength="100"
+                                placeholder="Ej. correo@ejemplo.com"
+                                autocomplete="email"
+                            >
+                        </div>
+
+
+                        <div class="form-message"
+                             id="clientFormMessage"
+                             role="alert"
+                             hidden>
+                        </div>
+
+
+                        <div class="modal-actions">
+
+                            <button type="button"
+                                    class="secondary-button"
+                                    id="cancelClientButton">
+                                Cancelar
+                            </button>
+
+                            <button type="submit"
+                                    class="primary-button"
+                                    id="saveClientButton">
+                                Guardar cliente
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </main>
+
+    </div>
+
+
+    <script src="{{ url_for('static', filename='js/api.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/establishment/clients.js') }}"></script>
+
+</body>
+</html>

@@ -1,0 +1,528 @@
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Citas | CitaFácil</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/establishment/appointments.css') }}">
+</head>
+
+<body>
+
+    <div class="dashboard">
+
+        <!-- SIDEBAR -->
+
+        <aside class="sidebar">
+
+            <div class="sidebar-brand">
+                <h2>✦ Cita<span>Fácil</span></h2>
+
+                <p id="establishmentName">
+                    Panel de establecimiento
+                </p>
+            </div>
+
+            <nav class="sidebar-nav">
+
+                <a href="/establishment" class="nav-link">
+                    <span>⌂</span>
+                    Inicio
+                </a>
+
+                <a href="/establishment/appointments" class="nav-link active">
+                    <span>▦</span>
+                    Citas
+                </a>
+
+                <a href="/establishment/clients" class="nav-link">
+                    <span>♙</span>
+                    Clientes
+                </a>
+
+                <a href="/establishment/services" class="nav-link">
+                    <span>✦</span>
+                    Servicios
+                </a>
+
+                <a href="/establishment/schedules" class="nav-link">
+                    <span>◷</span>
+                    Horarios
+                </a>
+
+                <a href="#" class="nav-link">
+                    <span>⚙</span>
+                    Configuración
+                </a>
+
+            </nav>
+
+            <div class="sidebar-bottom">
+
+                <button
+                    type="button"
+                    class="logout-button"
+                    id="logoutButton"
+                >
+                    ⇥ Cerrar sesión
+                </button>
+
+            </div>
+
+        </aside>
+
+
+        <!-- CONTENIDO PRINCIPAL -->
+
+        <main class="main-content">
+
+            <!-- TOPBAR -->
+
+            <header class="topbar">
+
+                <div class="topbar-heading">
+
+                    <p class="topbar-subtitle">
+                        Panel de administración
+                    </p>
+
+                    <h1>Citas</h1>
+
+                </div>
+
+                <div class="topbar-user">
+
+                    <div class="user-avatar" id="userAvatar">
+                        A
+                    </div>
+
+                    <div class="user-information">
+
+                        <h2 id="adminName">
+                            Administrador
+                        </h2>
+
+                        <p>Administrador del establecimiento</p>
+
+                    </div>
+
+                </div>
+
+            </header>
+
+
+            <!-- INTRODUCCIÓN Y ACCIÓN PRINCIPAL -->
+
+            <section class="appointments-intro">
+
+                <div class="section-heading">
+
+                    <h2>Administración de citas</h2>
+
+                    <p>
+                        Consulta, registra y administra las citas
+                        de tus clientes.
+                    </p>
+
+                </div>
+
+                <button
+                    type="button"
+                    class="primary-button"
+                    id="addAppointmentButton"
+                >
+                    <span>＋</span>
+                    Agendar cita
+                </button>
+
+            </section>
+
+
+            <!-- ESTADÍSTICAS -->
+
+            <section class="statistics-section">
+
+                <div class="statistics-grid">
+
+                    <article class="stat-card">
+
+                        <div class="stat-icon">
+                            ▦
+                        </div>
+
+                        <div class="stat-information">
+
+                            <p>Total de citas</p>
+
+                            <h3 id="totalAppointments">0</h3>
+
+                            <span>Citas consultadas</span>
+
+                        </div>
+
+                    </article>
+
+
+                    <article class="stat-card">
+
+                        <div class="stat-icon active-icon">
+                            ✓
+                        </div>
+
+                        <div class="stat-information">
+
+                            <p>Confirmadas</p>
+
+                            <h3 id="confirmedAppointments">0</h3>
+
+                            <span>Citas confirmadas</span>
+
+                        </div>
+
+                    </article>
+
+
+                    <article class="stat-card">
+
+                        <div class="stat-icon pending-icon">
+                            ◷
+                        </div>
+
+                        <div class="stat-information">
+
+                            <p>Pendientes</p>
+
+                            <h3 id="pendingAppointments">0</h3>
+
+                            <span>Esperando confirmación</span>
+
+                        </div>
+
+                    </article>
+
+                </div>
+
+            </section>
+
+
+            <!-- LISTADO DE CITAS -->
+
+            <section class="appointments-section">
+
+                <div class="section-heading">
+
+                    <h2>Mis citas</h2>
+
+                    <p>
+                        Consulta y administra las citas de tu establecimiento.
+                    </p>
+
+                </div>
+
+
+                <!-- FILTROS -->
+
+                <div class="appointments-toolbar">
+
+                    <div class="filter-container">
+
+                        <label for="filterDate">Fecha:</label>
+
+                        <input
+                            type="date"
+                            id="filterDate"
+                        >
+
+                    </div>
+
+
+                    <div class="filter-container">
+
+                        <label for="filterStatus">Estado:</label>
+
+                        <select id="filterStatus">
+
+                            <option value="todos">Todos</option>
+                            <option value="pendiente">Pendientes</option>
+                            <option value="confirmada">Confirmadas</option>
+                            <option value="cancelada">Canceladas</option>
+                            <option value="completada">Completadas</option>
+
+                        </select>
+
+                    </div>
+
+
+                    <button
+                        type="button"
+                        class="secondary-button"
+                        id="clearFiltersButton"
+                    >
+                        Limpiar filtros
+                    </button>
+
+                </div>
+
+
+                <!-- TABLA -->
+
+                <div class="appointments-table-container">
+
+                    <table class="appointments-table">
+
+                        <thead>
+                            <tr>
+                                <th>Cliente</th>
+                                <th>Servicio</th>
+                                <th>Fecha</th>
+                                <th>Horario</th>
+                                <th>Estado</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="appointmentsTableBody">
+                            <!-- Contenido dinámico -->
+                        </tbody>
+
+                    </table>
+
+
+                    <!-- ESTADO VACÍO -->
+
+                    <div class="empty-state" id="emptyAppointments">
+
+                        <div class="empty-icon">
+                            ▦
+                        </div>
+
+                        <h3>No hay citas registradas</h3>
+
+                        <p>
+                            Cuando registres una cita, aparecerá
+                            en este espacio.
+                        </p>
+
+                    </div>
+
+
+                    <!-- CARGANDO -->
+
+                    <div class="loading-state" id="loadingAppointments">
+                        <p>Cargando citas...</p>
+                    </div>
+
+
+                    <!-- ERROR -->
+
+                    <div class="error-state" id="appointmentsError" hidden>
+
+                        <p id="appointmentsErrorMessage">
+                            No fue posible cargar las citas.
+                        </p>
+
+                        <button
+                            type="button"
+                            class="secondary-button"
+                            id="retryAppointmentsButton"
+                        >
+                            Intentar nuevamente
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- MODAL REGISTRAR / EDITAR CITA -->
+
+            <div
+                class="modal-overlay"
+                id="appointmentModal"
+                aria-hidden="true"
+                hidden
+            >
+
+                <div
+                    class="appointment-modal"
+                    role="dialog"
+                    aria-modal="true"
+                    aria-labelledby="modalTitle"
+                >
+
+                    <!-- ENCABEZADO DEL MODAL -->
+
+                    <div class="modal-header">
+
+                        <div>
+
+                            <h2 id="modalTitle">
+                                Agendar cita
+                            </h2>
+
+                            <p>
+                                Completa la información de la cita.
+                            </p>
+
+                        </div>
+
+                        <button
+                            type="button"
+                            class="modal-close"
+                            id="closeAppointmentModal"
+                            aria-label="Cerrar ventana"
+                        >
+                            ×
+                        </button>
+
+                    </div>
+
+
+                    <!-- FORMULARIO -->
+
+                    <form id="appointmentForm">
+
+                        <input
+                            type="hidden"
+                            id="appointmentId"
+                        >
+
+
+                        <div class="form-group">
+
+                            <label for="appointmentClient">
+                                Cliente
+                            </label>
+
+                            <select
+                                id="appointmentClient"
+                                name="id_cliente"
+                                required
+                            >
+                                <option value="">
+                                    Selecciona un cliente
+                                </option>
+                            </select>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="appointmentService">
+                                Servicio
+                            </label>
+
+                            <select
+                                id="appointmentService"
+                                name="id_servicio"
+                                required
+                            >
+                                <option value="">
+                                    Selecciona un servicio
+                                </option>
+                            </select>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="appointmentDate">
+                                Fecha
+                            </label>
+
+                            <input
+                                type="date"
+                                id="appointmentDate"
+                                name="fecha"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="appointmentTime">
+                                Hora de inicio
+                            </label>
+
+                            <input
+                                type="time"
+                                id="appointmentTime"
+                                name="hora_inicio"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div
+                            class="appointment-service-info"
+                            id="appointmentServiceInfo"
+                            hidden
+                        >
+                            <p>
+                                Duración del servicio:
+                                <strong id="appointmentDuration">
+                                    0 minutos
+                                </strong>
+                            </p>
+                        </div>
+
+
+                        <div
+                            class="form-message"
+                            id="appointmentFormMessage"
+                            role="alert"
+                            hidden
+                        ></div>
+
+
+                        <div class="modal-actions">
+
+                            <button
+                                type="button"
+                                class="secondary-button"
+                                id="cancelAppointmentButton"
+                            >
+                                Cancelar
+                            </button>
+
+                            <button
+                                type="submit"
+                                class="primary-button"
+                                id="saveAppointmentButton"
+                            >
+                                Guardar cita
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </main>
+
+    </div>
+
+
+    <!-- JAVASCRIPT -->
+
+    <script src="{{ url_for('static', filename='js/api.js') }}"></script>
+
+    <script src="{{ url_for('static', filename='js/establishment/appointments.js') }}"></script>
+
+</body>
+</html>

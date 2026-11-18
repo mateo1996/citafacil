@@ -1,0 +1,635 @@
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Horarios | CitaFácil</title>
+
+    <!-- CSS DEL MÓDULO -->
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/establishment/schedules.css') }}">
+
+</head>
+
+<body>
+
+    <div class="dashboard">
+
+        <!-- =========================================
+             MENÚ LATERAL
+        ========================================== -->
+
+        <aside class="sidebar">
+
+            <div class="sidebar-brand">
+
+                <h2>✦ Cita<span>Fácil</span></h2>
+
+                <p id="establishmentName">
+                    Panel de establecimiento
+                </p>
+
+            </div>
+
+
+            <nav class="sidebar-nav">
+
+                <a href="/establishment" class="nav-link">
+                    <span>⌂</span>
+                    Inicio
+                </a>
+
+                <a href="/establishment/appointments" class="nav-link">
+                    <span>▦</span>
+                    Citas
+                </a>
+
+                <a href="/establishment/clients" class="nav-link">
+                    <span>♙</span>
+                    Clientes
+                </a>
+
+                <a href="/establishment/services" class="nav-link">
+                    <span>✦</span>
+                    Servicios
+                </a>
+
+                <a href="/establishment/schedules" class="nav-link active">
+                    <span>◷</span>
+                    Horarios
+                </a>
+
+                <a href="#" class="nav-link">
+                    <span>⚙</span>
+                    Configuración
+                </a>
+
+            </nav>
+
+
+            <!-- CERRAR SESIÓN -->
+            <div class="sidebar-bottom">
+
+                <button
+                    type="button"
+                    class="logout-button"
+                    id="logoutButton"
+                >
+                    ⇥ Cerrar sesión
+                </button>
+
+            </div>
+
+        </aside>
+
+
+        <!-- =========================================
+             CONTENIDO PRINCIPAL
+        ========================================== -->
+
+        <main class="main-content">
+
+
+            <!-- ENCABEZADO -->
+            <header class="topbar">
+
+                <div class="topbar-heading">
+
+                    <p class="topbar-subtitle">
+                        Panel de administración
+                    </p>
+
+                    <h1>Horarios</h1>
+
+                </div>
+
+
+                <!-- USUARIO -->
+                <div class="topbar-user">
+
+                    <div class="user-avatar" id="userAvatar">
+                        A
+                    </div>
+
+                    <div class="user-information">
+
+                        <h2 id="adminName">
+                            Administrador
+                        </h2>
+
+                        <p>Administrador del establecimiento</p>
+
+                    </div>
+
+                </div>
+
+            </header>
+
+
+
+            <!-- =====================================
+                 INTRODUCCIÓN
+            ====================================== -->
+
+            <section class="schedules-intro">
+
+                <div class="section-heading">
+
+                    <h2>Administración de horarios</h2>
+
+                    <p>
+                        Configura los días y las horas de atención
+                        de tu establecimiento, incluyendo los
+                        horarios de descanso.
+                    </p>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =====================================
+                 ESTADÍSTICAS DE HORARIOS
+            ====================================== -->
+
+            <section class="statistics-section">
+
+                <div class="statistics-grid">
+
+
+                    <!-- TOTAL -->
+                    <article class="stat-card">
+
+                        <div class="stat-icon">
+                            ◷
+                        </div>
+
+                        <div class="stat-information">
+
+                            <p>Días configurados</p>
+
+                            <h3 id="totalSchedules">
+                                0
+                            </h3>
+
+                            <span>De 7 días disponibles</span>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- ACTIVOS -->
+                    <article class="stat-card">
+
+                        <div class="stat-icon active-icon">
+                            ✓
+                        </div>
+
+                        <div class="stat-information">
+
+                            <p>Días activos</p>
+
+                            <h3 id="activeSchedules">
+                                0
+                            </h3>
+
+                            <span>Disponibles para atención</span>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- INACTIVOS -->
+                    <article class="stat-card">
+
+                        <div class="stat-icon inactive-icon">
+                            ◷
+                        </div>
+
+                        <div class="stat-information">
+
+                            <p>Días inactivos</p>
+
+                            <h3 id="inactiveSchedules">
+                                0
+                            </h3>
+
+                            <span>Sin atención habilitada</span>
+
+                        </div>
+
+                    </article>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =====================================
+                 LISTADO DE HORARIOS
+            ====================================== -->
+
+            <section class="schedules-section">
+
+
+                <!-- ENCABEZADO -->
+                <div class="section-heading">
+
+                    <h2>Horario semanal</h2>
+
+                    <p>
+                        Consulta y administra los horarios
+                        de atención de cada día.
+                    </p>
+
+                </div>
+
+
+
+                <!-- FILTROS -->
+                <div class="schedules-toolbar">
+
+                    <div class="filter-container">
+
+                        <label for="filterScheduleStatus">
+                            Mostrar:
+                        </label>
+
+                        <select id="filterScheduleStatus">
+
+                            <option value="todos">
+                                Todos los días
+                            </option>
+
+                            <option value="configurados">
+                                Configurados
+                            </option>
+
+                            <option value="1">
+                                Activos
+                            </option>
+
+                            <option value="0">
+                                Inactivos
+                            </option>
+
+                            <option value="pendientes">
+                                Sin configurar
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- TARJETAS DE HORARIOS -->
+                <div
+                    class="schedules-grid"
+                    id="schedulesGrid"
+                >
+
+                    <!--
+                        Los siete días se generarán
+                        dinámicamente mediante JavaScript.
+                    -->
+
+                </div>
+
+
+
+                <!-- CARGANDO -->
+                <div
+                    class="loading-state"
+                    id="loadingSchedules"
+                >
+
+                    <p>Cargando horarios...</p>
+
+                </div>
+
+
+
+                <!-- ESTADO VACÍO -->
+                <div
+                    class="empty-state"
+                    id="emptySchedules"
+                    hidden
+                >
+
+                    <div class="empty-icon">
+                        ◷
+                    </div>
+
+                    <h3>No hay horarios configurados</h3>
+
+                    <p>
+                        Configura los horarios de atención
+                        de tu establecimiento.
+                    </p>
+
+                </div>
+
+
+
+                <!-- ERROR -->
+                <div
+                    class="error-state"
+                    id="schedulesError"
+                    hidden
+                >
+
+                    <p>
+                        No fue posible cargar los horarios.
+                    </p>
+
+                    <button
+                        type="button"
+                        class="secondary-button"
+                        id="retrySchedulesButton"
+                    >
+                        Intentar nuevamente
+                    </button>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =====================================
+                 MODAL AGREGAR / EDITAR HORARIO
+            ====================================== -->
+
+            <div
+                class="modal-overlay"
+                id="scheduleModal"
+                aria-hidden="true"
+                hidden
+            >
+
+                <div
+                    class="schedule-modal"
+                    role="dialog"
+                    aria-modal="true"
+                    aria-labelledby="modalTitle"
+                >
+
+
+                    <!-- ENCABEZADO -->
+                    <div class="modal-header">
+
+                        <div>
+
+                            <h2 id="modalTitle">
+                                Configurar horario
+                            </h2>
+
+                            <p>
+                                Define las horas de atención
+                                y el descanso del establecimiento.
+                            </p>
+
+                        </div>
+
+
+                        <button
+                            type="button"
+                            class="modal-close"
+                            id="closeScheduleModal"
+                            aria-label="Cerrar ventana"
+                        >
+                            ×
+                        </button>
+
+                    </div>
+
+
+
+                    <!-- FORMULARIO -->
+                    <form id="scheduleForm">
+
+                        <input
+                            type="hidden"
+                            id="scheduleId"
+                        >
+
+
+                        <!-- DÍA -->
+                        <div class="form-group">
+
+                            <label for="scheduleDay">
+                                Día de la semana
+                            </label>
+
+                            <select
+                                id="scheduleDay"
+                                name="dia"
+                                required
+                            >
+
+                                <option value="">
+                                    Selecciona un día
+                                </option>
+
+                                <option value="lunes">Lunes</option>
+                                <option value="martes">Martes</option>
+                                <option value="miercoles">Miércoles</option>
+                                <option value="jueves">Jueves</option>
+                                <option value="viernes">Viernes</option>
+                                <option value="sabado">Sábado</option>
+                                <option value="domingo">Domingo</option>
+
+                            </select>
+
+                        </div>
+
+
+
+                        <!-- HORARIO DE ATENCIÓN -->
+                        <div class="form-section">
+
+                            <h3>Horario de atención</h3>
+
+                            <p>
+                                Define la hora de apertura y cierre.
+                            </p>
+
+
+                            <div class="form-row">
+
+                                <div class="form-group">
+
+                                    <label for="scheduleStart">
+                                        Hora de apertura
+                                    </label>
+
+                                    <input
+                                        type="time"
+                                        id="scheduleStart"
+                                        name="hora_inicio"
+                                        required
+                                    >
+
+                                </div>
+
+
+                                <div class="form-group">
+
+                                    <label for="scheduleEnd">
+                                        Hora de cierre
+                                    </label>
+
+                                    <input
+                                        type="time"
+                                        id="scheduleEnd"
+                                        name="hora_fin"
+                                        required
+                                    >
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <!-- DESCANSO -->
+                        <div class="form-section">
+
+                            <div class="rest-heading">
+
+                                <div>
+
+                                    <h3>Horario de descanso</h3>
+
+                                    <p>
+                                        Esta configuración es opcional.
+                                    </p>
+
+                                </div>
+
+                                <label class="switch-container">
+
+                                    <input
+                                        type="checkbox"
+                                        id="enableBreak"
+                                    >
+
+                                    <span class="switch-slider"></span>
+
+                                </label>
+
+                            </div>
+
+
+
+                            <div
+                                class="break-fields"
+                                id="breakFields"
+                                hidden
+                            >
+
+                                <div class="form-row">
+
+                                    <div class="form-group">
+
+                                        <label for="breakStart">
+                                            Inicio del descanso
+                                        </label>
+
+                                        <input
+                                            type="time"
+                                            id="breakStart"
+                                            name="hora_inicio_descanso"
+                                        >
+
+                                    </div>
+
+
+                                    <div class="form-group">
+
+                                        <label for="breakEnd">
+                                            Fin del descanso
+                                        </label>
+
+                                        <input
+                                            type="time"
+                                            id="breakEnd"
+                                            name="hora_fin_descanso"
+                                        >
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <!-- MENSAJE -->
+                        <div
+                            class="form-message"
+                            id="scheduleFormMessage"
+                            role="alert"
+                            hidden
+                        ></div>
+
+
+
+                        <!-- BOTONES -->
+                        <div class="modal-actions">
+
+                            <button
+                                type="button"
+                                class="secondary-button"
+                                id="cancelScheduleButton"
+                            >
+                                Cancelar
+                            </button>
+
+
+                            <button
+                                type="submit"
+                                class="primary-button"
+                                id="saveScheduleButton"
+                            >
+                                Guardar horario
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </main>
+
+    </div>
+
+
+
+    <!-- =========================================
+         JAVASCRIPT
+    ========================================== -->
+
+    <script src="{{ url_for('static', filename='js/api.js') }}"></script>
+
+    <script src="{{ url_for('static', filename='js/establishment/schedules.js') }}"></script>
+
+</body>
+</html>

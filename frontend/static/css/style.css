@@ -1,0 +1,489 @@
+
+/* =================================
+   1. VARIABLES Y COLORES
+================================= */
+
+:root {
+    --purple-dark: #21134F;
+    --purple: #6938D3;
+    --purple-hover: #5528B7;
+
+    --lavender: #EDE7FF;
+
+    --text: #211A38;
+    --muted: #77718A;
+
+    --border: #E5E0F0;
+    --white: #FFFFFF;
+}
+
+/* =================================
+   2. CONFIGURACIÓN GENERAL
+================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    width: 100%;
+    min-width: 320px;
+}
+
+body {
+    margin: 0;
+    width: 100%;
+    min-height: 100vh;
+
+    font-family: "Inter", Arial, sans-serif;
+
+    color: var(--text);
+    background: #F5F2FC;
+
+    overflow-x: hidden;
+}
+
+button,
+input,
+select,
+textarea {
+    font: inherit;
+}
+
+button,
+input,
+select {
+    max-width: 100%;
+}
+
+a {
+    color: var(--purple);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* =================================
+   3. DISTRIBUCIÓN PRINCIPAL
+================================= */
+
+.login-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    width: 100%;
+    min-height: 100vh;
+
+    margin: 0;
+    padding: 0;
+
+    background: var(--white);
+}
+
+/* =================================
+   4. PANEL DEL FORMULARIO
+================================= */
+
+.form-panel {
+    display: grid;
+    place-items: center;
+
+    box-sizing: border-box;
+
+    min-width: 0;
+    min-height: 100vh;
+
+    padding: 50px 35px;
+
+    background: var(--white);
+}
+
+.form-wrap {
+    width: 100%;
+    max-width: 420px;
+}
+
+/* =================================
+   5. ENCABEZADOS DE FORMULARIOS
+================================= */
+
+.form-heading {
+    margin-bottom: 35px;
+}
+
+.form-heading h2,
+.form-wrap > h2 {
+    margin: 0 0 10px;
+
+    color: var(--text);
+    font-size: 34px;
+    letter-spacing: -1.2px;
+}
+
+.form-heading p:last-child,
+.form-subtitle {
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.form-subtitle {
+    margin: 0 0 32px;
+}
+
+.purple {
+    color: var(--purple);
+}
+
+/* =================================
+   6. CAMPOS DE FORMULARIOS
+================================= */
+
+form > label {
+    display: block;
+
+    margin: 19px 0 9px;
+
+    color: var(--text);
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.input-wrap {
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+
+    width: 100%;
+    height: 54px;
+
+    padding: 0 15px;
+
+    border: 1px solid var(--border);
+    border-radius: 12px;
+
+    background: #FCFBFF;
+
+    transition: .2s;
+}
+
+.input-wrap:focus-within {
+    border-color: var(--purple);
+
+    box-shadow: 0 0 0 4px rgba(105, 56, 211, .10);
+}
+
+.input-icon {
+    flex-shrink: 0;
+
+    color: #8C78B8;
+    font-size: 19px;
+}
+
+.input-wrap input,
+.input-wrap select {
+    width: 100%;
+    min-width: 0;
+
+    border: none;
+    outline: none;
+
+    color: var(--text);
+    background: transparent;
+
+    font-family: inherit;
+    font-size: 13px;
+}
+
+.input-wrap input::placeholder {
+    color: #A49DB3;
+}
+
+/* =================================
+   7. CAMPOS DE CONTRASEÑA
+================================= */
+
+.password-container {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+
+    width: 100%;
+}
+
+.password-container input {
+    padding-right: 48px;
+}
+
+.toggle-password {
+    position: absolute;
+
+    top: 50%;
+    right: 8px;
+
+    transform: translateY(-50%);
+
+    display: grid;
+    place-items: center;
+
+    width: 35px;
+    height: 35px;
+
+    border: none;
+    border-radius: 8px;
+
+    color: #82769B;
+    background: transparent;
+
+    cursor: pointer;
+    font-size: 17px;
+}
+
+.toggle-password:hover {
+    background: var(--lavender);
+}
+
+/* =================================
+   8. OPCIONES DE FORMULARIOS
+================================= */
+
+.form-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 12px;
+
+    margin: 18px 0 25px;
+
+    font-size: 12px;
+}
+
+.remember {
+    display: flex;
+    align-items: center;
+
+    gap: 7px;
+
+    color: var(--muted);
+    cursor: pointer;
+}
+
+.remember input {
+    accent-color: var(--purple);
+}
+
+.form-options a {
+    font-weight: 600;
+}
+
+/* =================================
+   9. BOTONES
+================================= */
+
+.login-button,
+.submit-button {
+    display: block;
+
+    width: 100%;
+    height: 53px;
+
+    margin-top: 22px;
+
+    border: none;
+    border-radius: 12px;
+
+    color: white;
+
+    background: linear-gradient(
+        100deg,
+        var(--purple),
+        #5126B9
+    );
+
+    box-shadow: 0 9px 20px rgba(105, 56, 211, .22);
+
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 700;
+
+    cursor: pointer;
+    transition: .2s;
+}
+
+.login-button:hover,
+.submit-button:hover {
+    transform: translateY(-2px);
+
+    background: var(--purple-hover);
+
+    box-shadow: 0 12px 24px rgba(105, 56, 211, .28);
+}
+
+.login-button:disabled,
+.submit-button:disabled {
+    opacity: .65;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* =================================
+   10. MENSAJES
+================================= */
+
+.form-message {
+    min-height: 18px;
+
+    margin: 12px 0;
+
+    font-size: 12px;
+    text-align: center;
+}
+
+.form-message.error {
+    color: #B54747;
+}
+
+.form-message.success {
+    color: #218653;
+}
+
+.form-message.info {
+    color: var(--purple);
+}
+
+/* =================================
+   11. ENLACES Y REGISTRO
+================================= */
+
+.register-text {
+    margin: 24px 0 0;
+
+    color: var(--muted);
+    font-size: 13px;
+    text-align: center;
+}
+
+.register-text a {
+    font-weight: 700;
+}
+
+/* =================================
+   12. SEPARADOR
+================================= */
+
+.separator {
+    display: flex;
+    align-items: center;
+
+    gap: 14px;
+
+    margin: 26px 0 22px;
+
+    color: #A49DB3;
+}
+
+.separator span {
+    flex: 1;
+
+    height: 1px;
+
+    background: var(--border);
+}
+
+.separator small {
+    font-size: 11px;
+}
+
+/* =================================
+   13. MENSAJE FINAL
+================================= */
+
+.demo-note {
+    margin-top: 42px;
+
+    color: #A49DB3;
+    font-size: 10px;
+    text-align: center;
+}
+
+/* =================================
+   14. RESPONSIVE GENERAL
+================================= */
+
+@media (max-width: 1024px) {
+    .form-panel {
+        padding: 40px 25px;
+    }
+}
+
+@media (max-width: 800px) {
+    .login-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .form-panel {
+        min-height: auto;
+        padding: 45px 25px;
+    }
+
+    .form-wrap {
+        max-width: 450px;
+    }
+}
+
+@media (max-width: 600px) {
+    .form-panel {
+        padding: 35px 20px;
+    }
+
+    .form-wrap {
+        max-width: 100%;
+    }
+
+    .form-heading {
+        margin-bottom: 28px;
+    }
+
+    .form-heading h2,
+    .form-wrap > h2 {
+        font-size: 29px;
+    }
+
+    .input-wrap {
+        height: 50px;
+    }
+
+    .form-options {
+        flex-wrap: wrap;
+        font-size: 11px;
+    }
+
+    .demo-note {
+        margin-top: 30px;
+    }
+}
+
+@media (max-width: 380px) {
+    .form-panel {
+        padding: 28px 15px;
+    }
+
+    .form-heading h2,
+    .form-wrap > h2 {
+        font-size: 25px;
+    }
+
+    .form-options {
+        gap: 15px;
+    }
+
+    .login-button,
+    .submit-button {
+        height: 49px;
+    }
+}

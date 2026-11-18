@@ -1,0 +1,456 @@
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Inicio | CitaFácil</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/establishment/index.css') }}">
+</head>
+
+<body>
+
+    <div class="dashboard">
+
+        <!-- SIDEBAR -->
+
+        <aside class="sidebar">
+
+            <div class="sidebar-brand">
+
+                <h2>✦ Cita<span>Fácil</span></h2>
+
+                <p id="establishmentName">
+                    Panel de establecimiento
+                </p>
+
+            </div>
+
+
+            <nav class="sidebar-nav">
+
+                <a href="/establishment" class="nav-link active">
+                    <span>⌂</span>
+                    Inicio
+                </a>
+
+                <a href="/establishment/appointments" class="nav-link">
+                    <span>▦</span>
+                    Citas
+                </a>
+
+                <a href="/establishment/clients" class="nav-link">
+                    <span>♙</span>
+                    Clientes
+                </a>
+
+                <a href="/establishment/services" class="nav-link">
+                    <span>✦</span>
+                    Servicios
+                </a>
+
+                <a href="/establishment/schedules" class="nav-link">
+                    <span>◷</span>
+                    Horarios
+                </a>
+
+                <a href="#" class="nav-link">
+                    <span>⚙</span>
+                    Configuración
+                </a>
+
+            </nav>
+
+
+            <div class="sidebar-bottom">
+
+                <button
+                    type="button"
+                    class="logout-button"
+                    id="logoutButton"
+                >
+                    ⇥ Cerrar sesión
+                </button>
+
+            </div>
+
+        </aside>
+
+
+        <!-- CONTENIDO PRINCIPAL -->
+
+        <main class="main-content">
+
+            <!-- TOPBAR -->
+
+            <header class="topbar">
+
+                <div class="topbar-heading">
+
+                    <p class="topbar-subtitle">
+                        Panel de administración
+                    </p>
+
+                    <h1 id="welcomeTitle">
+                        ¡Bienvenido!
+                    </h1>
+
+                </div>
+
+
+                <div class="topbar-user">
+
+                    <div class="user-avatar" id="userAvatar">
+                        A
+                    </div>
+
+                    <div class="user-information">
+
+                        <h2 id="adminName">
+                            Administrador
+                        </h2>
+
+                        <p>Administrador del establecimiento</p>
+
+                    </div>
+
+                </div>
+
+            </header>
+
+
+            <!-- ESTADÍSTICAS -->
+
+            <section class="statistics-grid">
+
+                <article class="stat-card">
+
+                    <div class="stat-icon purple">
+                        ▣
+                    </div>
+
+                    <div class="stat-info">
+
+                        <p>Total de citas</p>
+
+                        <h2 id="totalAppointments">0</h2>
+
+                    </div>
+
+                </article>
+
+
+                <article class="stat-card">
+
+                    <div class="stat-icon orange">
+                        ◷
+                    </div>
+
+                    <div class="stat-info">
+
+                        <p>Citas pendientes</p>
+
+                        <h2 id="pendingAppointments">0</h2>
+
+                    </div>
+
+                </article>
+
+
+                <article class="stat-card">
+
+                    <div class="stat-icon green">
+                        ♙
+                    </div>
+
+                    <div class="stat-info">
+
+                        <p>Total de clientes</p>
+
+                        <h2 id="totalClients">0</h2>
+
+                    </div>
+
+                </article>
+
+
+                <article class="stat-card">
+
+                    <div class="stat-icon blue">
+                        ✦
+                    </div>
+
+                    <div class="stat-info">
+
+                        <p>Servicios activos</p>
+
+                        <h2 id="totalServices">0</h2>
+
+                    </div>
+
+                </article>
+
+            </section>
+
+
+            <!-- PANELES PRINCIPALES -->
+
+            <section class="dashboard-panels">
+
+
+                <!-- PRÓXIMAS CITAS -->
+
+                <article class="dashboard-panel upcoming-panel">
+
+                    <div class="panel-header">
+
+                        <div>
+                            <h2>Próximas citas</h2>
+                            <p>Tus siguientes citas programadas</p>
+                        </div>
+
+                        <a href="/establishment/appointments">
+                            Ver todas
+                        </a>
+
+                    </div>
+
+
+                    <div
+                        id="upcomingAppointments"
+                        class="upcoming-appointments-list"
+                    >
+
+                        <div class="loading-state">
+                            Cargando próximas citas...
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <!-- ACCESOS RÁPIDOS -->
+
+                <article class="dashboard-panel quick-access-panel">
+
+                    <div class="panel-header">
+
+                        <div>
+                            <h2>Accesos rápidos</h2>
+                            <p>Administra tu establecimiento</p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="quick-access-grid">
+
+                        <a
+                            href="/establishment/appointments"
+                            class="quick-access-card"
+                        >
+
+                            <div class="quick-access-icon purple">
+                                ▣
+                            </div>
+
+                            <div>
+                                <h3>Gestionar citas</h3>
+                                <p>Consulta y administra tus citas</p>
+                            </div>
+
+                            <span>→</span>
+
+                        </a>
+
+
+                        <a
+                            href="/establishment/services"
+                            class="quick-access-card"
+                        >
+
+                            <div class="quick-access-icon orange">
+                                ✦
+                            </div>
+
+                            <div>
+                                <h3>Servicios</h3>
+                                <p>Administra tus servicios</p>
+                            </div>
+
+                            <span>→</span>
+
+                        </a>
+
+
+                        <a
+                            href="/establishment/schedules"
+                            class="quick-access-card"
+                        >
+
+                            <div class="quick-access-icon green">
+                                ◷
+                            </div>
+
+                            <div>
+                                <h3>Horarios</h3>
+                                <p>Configura tus horarios de atención</p>
+                            </div>
+
+                            <span>→</span>
+
+                        </a>
+
+                    </div>
+
+                </article>
+
+            </section>
+
+
+            <!-- CALENDARIO DE CITAS -->
+
+            <section class="calendar-section">
+
+                <div class="calendar-section-header">
+
+                    <div>
+                        <h2>Calendario de citas</h2>
+                        <p>Consulta las citas programadas por día.</p>
+                    </div>
+
+                </div>
+
+
+                <div class="calendar-container">
+
+
+                    <!-- CALENDARIO MENSUAL -->
+
+                    <article class="calendar-panel">
+
+                        <div class="calendar-header">
+
+                            <h3 id="calendarMonth">
+                                Noviembre 2026
+                            </h3>
+
+                            <div class="calendar-navigation">
+
+                                <button
+                                    type="button"
+                                    id="previousMonthButton"
+                                    aria-label="Mes anterior"
+                                >
+                                    ‹
+                                </button>
+
+                                <button
+                                    type="button"
+                                    id="todayButton"
+                                >
+                                    Hoy
+                                </button>
+
+                                <button
+                                    type="button"
+                                    id="nextMonthButton"
+                                    aria-label="Mes siguiente"
+                                >
+                                    ›
+                                </button>
+
+                            </div>
+
+                        </div>
+
+
+                        <div
+                            id="calendarDays"
+                            class="calendar-days"
+                        >
+                            <!-- JavaScript genera los días -->
+                        </div>
+
+
+                        <!-- LEYENDA -->
+
+                        <div class="calendar-legend">
+
+                            <div class="legend-item">
+                                <span class="legend-dot pending"></span>
+                                <span>Pendiente</span>
+                            </div>
+
+                            <div class="legend-item">
+                                <span class="legend-dot confirmada"></span>
+                                <span>Confirmada</span>
+                            </div>
+
+                            <div class="legend-item">
+                                <span class="legend-dot completada"></span>
+                                <span>Completada</span>
+                            </div>
+
+                            <div class="legend-item">
+                                <span class="legend-dot cancelada"></span>
+                                <span>Cancelada</span>
+                            </div>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- CITAS DEL DÍA SELECCIONADO -->
+
+                    <article class="calendar-appointments-panel">
+
+                        <div class="calendar-appointments-header">
+
+                            <div>
+                                <h3>Citas del día</h3>
+
+                                <p id="selectedDateText">
+                                    Selecciona un día del calendario
+                                </p>
+                            </div>
+
+                        </div>
+
+
+                        <div
+                            id="selectedDayAppointments"
+                            class="selected-day-appointments"
+                        >
+
+                            <div class="empty-state">
+                                Selecciona un día para consultar sus citas.
+                            </div>
+
+                        </div>
+
+                    </article>
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+
+    <!-- JAVASCRIPT -->
+
+    <script src="{{ url_for('static', filename='js/api.js') }}"></script>
+
+    <script src="{{ url_for('static', filename='js/establishment/index.js') }}"></script>
+
+</body>
+</html>

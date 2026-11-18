@@ -1,0 +1,320 @@
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Crear cuenta | CitaFácil</title>
+
+    <!-- CSS GENERAL -->
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+    <!-- CSS ESPECÍFICO DEL REGISTRO -->
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/register.css') }}">
+    <!-- CSS LADO IZQUIERDO -->
+        <link rel="stylesheet"
+            href="{{ url_for('static', filename='css/brand.css') }}">
+
+</head>
+
+<body>
+
+    <main class="login-layout">
+
+                <section class="brand-panel">
+
+            <div class="brand">
+
+                <div class="brand-icon">✦</div>
+
+                <span>CitaFácil</span>
+
+            </div>
+
+            <div class="brand-copy">
+
+                <p class="eyebrow">
+                    BIENVENIDO A CITAFÁCIL
+                </p>
+
+                <h1>
+                    Comienza a organizar tu tiempo.
+                </h1>
+
+                <p class="brand-description">
+                    Crea tu cuenta y descubre una forma más sencilla
+                    de gestionar y reservar tus citas.
+                </p>
+
+            </div>
+
+            <div class="calendar-art">
+
+                <div class="calendar-top">
+                    <span></span>
+                    <span></span>
+                </div>
+
+                <div class="calendar-grid">
+                    <i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+                    <i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+                    <i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+                    <i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+                </div>
+
+                <div class="clock">◷</div>
+
+            </div>
+
+            <p class="brand-footer">
+                © 2026 CitaFácil. Todos los derechos reservados.
+            </p>
+
+        </section>
+
+
+        <!-- =================================
+             PANEL DEL REGISTRO
+        ================================== -->
+
+        <section class="form-panel register-form-panel">
+
+            <div class="form-wrap register-wrap">
+
+
+                <!-- ENCABEZADO -->
+
+                <div class="form-heading">
+
+                    <p class="eyebrow purple">
+                        ÚNETE A CITAFÁCIL
+                    </p>
+
+                    <h2>Crear una cuenta</h2>
+
+                    <p>
+                        Completa tus datos para comenzar.
+                    </p>
+
+                </div>
+
+
+                <!-- =================================
+                     FORMULARIO DE REGISTRO
+                ================================== -->
+
+                <form id="registerForm" novalidate>
+
+
+                    <!-- NOMBRE COMPLETO -->
+
+                    <label for="name">
+                        Nombre completo
+                    </label>
+
+                    <div class="input-wrap">
+
+                        <span class="input-icon">♙</span>
+
+                        <input
+                            type="text"
+                            id="name"
+                            name="name"
+                            placeholder="Ingresa tu nombre"
+                            autocomplete="name"
+                        >
+
+                    </div>
+
+
+                    <!-- CORREO ELECTRÓNICO -->
+
+                    <label for="email">
+                        Correo electrónico
+                    </label>
+
+                    <div class="input-wrap">
+
+                        <span class="input-icon">✉</span>
+
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            placeholder="correo@ejemplo.com"
+                            autocomplete="email"
+                        >
+
+                    </div>
+                    <br></br>
+                    <p class="register-text">
+                        ¿Tienes un establecimiento?
+
+                        <a href="{{ url_for('register_establishment') }}">
+                            Registra tu establecimiento
+                        </a>
+                    </p>
+
+                    <!-- CONTRASEÑA -->
+
+                    <label for="password">
+                        Contraseña
+                    </label>
+
+                    <div class="input-wrap">
+
+                        <span class="input-icon">♧</span>
+
+                        <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            placeholder="Mínimo 8 caracteres"
+                            autocomplete="new-password"
+                        >
+
+                        <button
+                            type="button"
+                            class="toggle-password"
+                            data-target="password"
+                            aria-label="Mostrar contraseña"
+                        >
+                            👁
+                        </button>
+
+                    </div>
+
+
+                    <!-- CONFIRMAR CONTRASEÑA -->
+
+                    <label for="confirmPassword">
+                        Confirmar contraseña
+                    </label>
+
+                    <div class="input-wrap">
+
+                        <span class="input-icon">♧</span>
+
+                        <input
+                            type="password"
+                            id="confirmPassword"
+                            name="confirmPassword"
+                            placeholder="Repite tu contraseña"
+                            autocomplete="new-password"
+                        >
+
+                        <button
+                            type="button"
+                            class="toggle-password"
+                            data-target="confirmPassword"
+                            aria-label="Mostrar contraseña"
+                        >
+                            👁
+                        </button>
+
+                    </div>
+
+
+                    <!-- TÉRMINOS Y CONDICIONES -->
+
+                    <div class="register-terms">
+
+                        <label class="remember">
+
+                            <input
+                                type="checkbox"
+                                id="terms"
+                                name="terms"
+                            >
+
+                            <span>
+
+                                Acepto los
+
+                                <a href="#" id="termsLink">
+                                    términos y condiciones
+                                </a>
+
+                            </span>
+
+                        </label>
+
+                    </div>
+
+
+                    <!-- MENSAJES DE VALIDACIÓN -->
+
+                    <p
+                        class="form-message"
+                        id="registerMessage"
+                        role="status"
+                        aria-live="polite"
+                    ></p>
+
+
+                    <!-- BOTÓN CREAR CUENTA -->
+
+                    <button
+                        type="submit"
+                        class="submit-button"
+                    >
+                        Crear cuenta
+                    </button>
+
+
+                </form>
+
+
+                <!-- =================================
+                     ENLACE AL LOGIN
+                ================================== -->
+
+                <div class="separator">
+
+                    <span></span>
+
+                    <small>
+                        ¿Ya tienes una cuenta?
+                    </small>
+
+                    <span></span>
+
+                </div>
+
+
+                <p class="register-text">
+
+                    <a href="{{ url_for('inicio') }}">
+                        Iniciar sesión
+                    </a>
+
+                </p>
+
+
+                <!-- MENSAJE FINAL -->
+
+                <p class="demo-note">
+                    Tu organización comienza aquí.
+                </p>
+
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =================================
+         JAVASCRIPT DEL REGISTRO
+    ================================== -->
+
+    <script src="{{ url_for('static', filename='js/api.js') }}" defer></script>
+    <script src="{{ url_for('static', filename='js/register.js') }}" defer></script>
+</body>
+
+</html>

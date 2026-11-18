@@ -1,0 +1,303 @@
+
+/* =================================
+   PANEL IZQUIERDO COMPARTIDO
+================================= */
+
+.brand-panel {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+
+    width: 100%;
+    min-width: 0;
+    min-height: 100vh;
+
+    margin: 0;
+    padding: 38px 52px;
+
+    color: white;
+
+    background:
+        radial-gradient(
+            circle at 15% 88%,
+            rgba(142, 104, 255, .55),
+            transparent 30%
+        ),
+        linear-gradient(
+            145deg,
+            #21134F,
+            #392078 58%,
+            #5532A7
+        );
+
+    overflow: hidden;
+}
+
+/* =================================
+   LOGOTIPO
+================================= */
+
+.brand {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 12px;
+
+    width: 100%;
+    margin: 0;
+    padding: 0;
+
+    font-size: 27px;
+    font-weight: 800;
+    color: white;
+}
+
+.brand-icon {
+    display: grid;
+    place-items: center;
+    flex: 0 0 42px;
+
+    width: 42px;
+    height: 42px;
+
+    margin: 0;
+    padding: 0;
+
+    border-radius: 13px;
+
+    color: var(--purple-dark);
+    background: #C9B6FF;
+
+    font-size: 27px;
+    line-height: 1;
+}
+
+/* =================================
+   TEXTO PRINCIPAL
+================================= */
+
+.brand-panel .brand-copy {
+    margin-top: 100px;
+    max-width: 470px;
+}
+
+.brand-panel .eyebrow {
+    display: inline-block;
+
+    margin-bottom: 14px;
+
+    color: #D8CCFF;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+.brand-panel .brand-copy h1 {
+    margin: 0;
+
+    color: white;
+    font-size: 46px;
+    line-height: 1.12;
+    letter-spacing: -2px;
+}
+
+.brand-panel .brand-description {
+    max-width: 390px;
+    margin-top: 22px;
+
+    color: #E2DAF8;
+    font-size: 15px;
+    line-height: 1.8;
+}
+
+/* =================================
+   CALENDARIO
+================================= */
+
+.calendar-art {
+    position: relative;
+
+    width: 290px;
+    height: 210px;
+
+    margin: auto auto 20px;
+    padding: 45px 25px 22px;
+
+    border-radius: 25px;
+
+    background: linear-gradient(
+        145deg,
+        #F9F6FF,
+        #DCD0FF
+    );
+
+    box-shadow: 0 25px 55px rgba(15, 7, 42, .28);
+
+    transform: rotate(-5deg);
+}
+
+.calendar-top {
+    position: absolute;
+
+    top: -12px;
+    left: 60px;
+    right: 60px;
+
+    display: flex;
+    justify-content: space-between;
+}
+
+.calendar-top span {
+    width: 11px;
+    height: 30px;
+
+    border-radius: 8px;
+    background: #A78BFA;
+}
+
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 8px;
+}
+
+.calendar-grid i {
+    height: 25px;
+
+    border-radius: 6px;
+    background: #C7B5F4;
+}
+
+.calendar-grid i:nth-child(3n) {
+    background: #8F6CE0;
+}
+
+.clock {
+    position: absolute;
+
+    right: -28px;
+    bottom: -25px;
+
+    display: grid;
+    place-items: center;
+
+    width: 82px;
+    height: 82px;
+
+    border: 7px solid #B69CF4;
+    border-radius: 50%;
+
+    color: var(--purple-dark);
+    background: white;
+
+    font-size: 49px;
+}
+
+/* =================================
+   PIE DEL PANEL
+================================= */
+
+.brand-footer {
+    margin: 0;
+
+    color: #D8CCFF;
+    font-size: 12px;
+    text-align: center;
+}
+
+/* =================================
+   RESPONSIVE
+================================= */
+
+@media (max-width: 1024px) {
+    .brand-panel {
+        padding: 40px 30px 25px;
+    }
+
+    .brand-panel .brand-copy {
+        margin-top: 75px;
+    }
+
+    .brand-panel .brand-copy h1 {
+        font-size: 36px;
+    }
+
+    .calendar-art {
+        width: 250px;
+        height: 190px;
+    }
+}
+
+@media (max-width: 800px) {
+    .brand-panel {
+        display: flex;
+        min-height: auto;
+        padding: 25px 30px;
+    }
+
+    .brand-panel .brand-copy {
+        margin-top: 25px;
+    }
+
+    .brand-panel .brand-copy h1 {
+        font-size: 30px;
+    }
+
+    .brand-panel .brand-description {
+        margin-top: 12px;
+    }
+
+    .calendar-art {
+        display: none;
+    }
+
+    .brand-footer {
+        margin-top: 20px;
+    }
+}
+
+@media (max-width: 600px) {
+    .brand-panel {
+        padding: 22px 20px;
+    }
+
+    .brand {
+        font-size: 23px;
+    }
+
+    .brand-icon {
+        flex-basis: 42px;
+        width: 42px;
+        height: 42px;
+        font-size: 27px;
+    }
+
+    .brand-panel .brand-copy {
+        margin-top: 22px;
+    }
+
+    .brand-panel .brand-copy h1 {
+        font-size: 26px;
+        letter-spacing: -1px;
+    }
+
+    .brand-panel .brand-description {
+        font-size: 13px;
+        line-height: 1.6;
+    }
+
+    .brand-panel .eyebrow {
+        font-size: 10px;
+    }
+}
+
+@media (max-width: 380px) {
+    .brand-panel .brand-copy h1 {
+        font-size: 23px;
+    }
+
+    .brand-panel .brand-description {
+        font-size: 12px;
+    }
+}

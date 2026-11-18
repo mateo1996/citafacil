@@ -1,0 +1,62 @@
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Verificar correo | CitaFácil</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/verify_email.css') }}">
+
+    <script src="{{ url_for('static', filename='js/api.js') }}" defer></script>
+    <script src="{{ url_for('static', filename='js/verify_email.js') }}" defer></script>
+</head>
+
+<body>
+
+    <main class="verify-container">
+
+        <section class="verify-card">
+
+            <div class="verify-icon">
+                ✉
+            </div>
+
+            <h1>Verifica tu correo electrónico</h1>
+
+            <p class="verify-description">
+                Estamos a un paso de completar tu registro en CitaFácil.
+                Confirma tu dirección de correo electrónico para activar
+                tu cuenta.
+            </p>
+
+            <div id="verifyMessage" class="verify-message info">
+                Estamos comprobando tu enlace de verificación...
+            </div>
+
+            <div class="verify-actions">
+
+                <a href="/" class="btn-primary">
+                    Ir al inicio
+                </a>
+
+                <button type="button"
+                        id="resendVerification"
+                        class="btn-secondary">
+                    Reenviar correo
+                </button>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</body>
+</html>

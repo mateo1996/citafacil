@@ -1,0 +1,128 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mis citas | CitaFácil</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/user/home.css') }}">
+</head>
+<body>
+
+    <div class="user-layout">
+
+        <aside class="sidebar">
+            <div class="sidebar-brand">
+                <div class="brand-icon">CF</div>
+                <span>CitaFácil</span>
+            </div>
+
+            <nav class="sidebar-navigation">
+                <a href="/user" class="nav-link active">
+                    <span class="nav-icon">▦</span>
+                    <span>Mis citas</span>
+                </a>
+
+                <a href="/user/calendar" class="nav-link">
+                    <span class="nav-icon">＋</span>
+                    <span>Agendar cita</span>
+                </a>
+                <a href="/user/profile" class="nav-link">
+                    <span class="nav-icon">♙</span>
+                    <span>Mi perfil</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <button id="logoutButton" class="logout-button">
+                    <span>↪</span>
+                    Cerrar sesión
+                </button>
+            </div>
+        </aside>
+
+        <main class="main-content">
+
+            <header class="topbar">
+                <div>
+                    <p class="topbar-subtitle">PORTAL DEL CLIENTE</p>
+                    <h1>Mis citas</h1>
+                </div>
+
+                <div class="user-profile">
+                    <div class="profile-avatar" id="userAvatar">U</div>
+                    <div class="profile-information">
+                        <span id="userName">Usuario</span>
+                        <small>Cliente</small>
+                    </div>
+                </div>
+            </header>
+
+            <section class="welcome-section">
+                <div>
+                    <p class="welcome-label">TU ESPACIO PERSONAL</p>
+                    <h2 id="welcomeTitle">¡Bienvenido a CitaFácil!</h2>
+                    <p>Consulta tus citas y administra tus próximas reservas.</p>
+                </div>
+
+                <a href="/user/calendar" class="primary-button">
+                    <span>＋</span>
+                    Agendar nueva cita
+                </a>
+            </section>
+
+            <section class="statistics-grid">
+
+                <article class="stat-card">
+                    <div class="stat-icon purple">▦</div>
+                    <div>
+                        <p>Total de citas</p>
+                        <h3 id="totalAppointments">0</h3>
+                    </div>
+                </article>
+
+                <article class="stat-card">
+                    <div class="stat-icon orange">◷</div>
+                    <div>
+                        <p>Pendientes</p>
+                        <h3 id="pendingAppointments">0</h3>
+                    </div>
+                </article>
+
+                <article class="stat-card">
+                    <div class="stat-icon green">✓</div>
+                    <div>
+                        <p>Confirmadas</p>
+                        <h3 id="confirmedAppointments">0</h3>
+                    </div>
+                </article>
+
+            </section>
+
+            <section class="appointments-section">
+
+                <div class="section-header">
+                    <div>
+                        <h2>Mis citas agendadas</h2>
+                        <p>Consulta el estado y los detalles de tus reservas.</p>
+                    </div>
+                </div>
+
+                <div id="appointmentsContainer" class="appointments-container">
+                    <div class="loading-state">
+                        Cargando tus citas...
+                    </div>
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+    <script src="{{ url_for('static', filename='js/api.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/user/home_user.js') }}"></script>
+
+</body>
+</html>

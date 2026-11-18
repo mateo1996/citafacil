@@ -1,0 +1,1248 @@
+
+/* =====================================================
+   VARIABLES Y CONFIGURACIÓN GENERAL
+===================================================== */
+
+:root {
+    --primary: #6938D3;
+    --primary-dark: #392078;
+    --lavender: #EDE7FF;
+    --white: #FFFFFF;
+    --green: #20A486;
+    --orange: #F4A340;
+
+    --text: #352B49;
+    --text-light: #81778F;
+    --border: #E8E2F0;
+    --background: #F8F6FC;
+
+    --danger: #DC5555;
+    --shadow: 0 5px 20px rgba(57, 32, 120, 0.07);
+    --radius: 14px;
+}
+
+
+/* =====================================================
+   REINICIO
+===================================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: var(--background);
+    color: var(--text);
+}
+
+button,
+input,
+select {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+
+/* =====================================================
+   ESTRUCTURA PRINCIPAL
+===================================================== */
+
+.dashboard {
+    display: flex;
+    min-height: 100vh;
+}
+
+
+/* =====================================================
+   MENÚ LATERAL
+===================================================== */
+
+.sidebar {
+    width: 255px;
+    min-width: 255px;
+    background: var(--primary-dark);
+    color: var(--white);
+
+    display: flex;
+    flex-direction: column;
+
+    padding: 28px 18px;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+
+    z-index: 100;
+}
+
+
+.sidebar-brand {
+    padding: 5px 12px 35px;
+}
+
+.sidebar-brand h2 {
+    font-size: 25px;
+    font-weight: 700;
+    letter-spacing: -1px;
+}
+
+.sidebar-brand h2 span {
+    color: #C8B4FF;
+}
+
+.sidebar-brand p {
+    font-size: 12px;
+    color: #C9BDE4;
+    margin-top: 8px;
+    overflow-wrap: anywhere;
+}
+
+
+/* NAVEGACIÓN */
+
+.sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.nav-link {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+
+    padding: 13px 15px;
+
+    text-decoration: none;
+    color: #D9D0ED;
+
+    border-radius: 9px;
+
+    font-size: 14px;
+
+    transition: 0.2s ease;
+}
+
+.nav-link span {
+    font-size: 19px;
+    width: 23px;
+    text-align: center;
+}
+
+.nav-link:hover {
+    background: rgba(255, 255, 255, 0.10);
+    color: var(--white);
+}
+
+.nav-link.active {
+    background: var(--primary);
+    color: var(--white);
+    font-weight: 600;
+}
+
+
+/* CERRAR SESIÓN */
+
+.sidebar-bottom {
+    margin-top: auto;
+    padding-top: 25px;
+}
+
+.logout-button {
+    width: 100%;
+
+    padding: 13px;
+
+    border: 1px solid rgba(255, 255, 255, 0.20);
+    border-radius: 9px;
+
+    background: transparent;
+    color: var(--white);
+
+    font-size: 14px;
+
+    transition: 0.2s ease;
+}
+
+.logout-button:hover {
+    background: rgba(255, 255, 255, 0.10);
+}
+
+
+/* =====================================================
+   CONTENIDO PRINCIPAL
+===================================================== */
+
+.main-content {
+    width: calc(100% - 255px);
+    min-height: 100vh;
+
+    margin-left: 255px;
+
+    padding: 30px 38px;
+}
+
+
+/* =====================================================
+   ENCABEZADO
+===================================================== */
+
+.topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 20px;
+
+    padding-bottom: 28px;
+    border-bottom: 1px solid var(--border);
+}
+
+.topbar-subtitle {
+    color: var(--text-light);
+    font-size: 13px;
+    margin-bottom: 7px;
+}
+
+.topbar-heading h1 {
+    font-size: 28px;
+    color: var(--primary-dark);
+}
+
+.topbar-user {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.user-avatar {
+    width: 43px;
+    height: 43px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: var(--lavender);
+    color: var(--primary);
+
+    font-size: 17px;
+    font-weight: 700;
+}
+
+.user-information h2 {
+    font-size: 14px;
+    color: var(--primary-dark);
+}
+
+.user-information p {
+    margin-top: 4px;
+    color: var(--text-light);
+    font-size: 11px;
+}
+
+
+/* =====================================================
+   ENCABEZADOS DE SECCIÓN
+===================================================== */
+
+.section-heading h2 {
+    color: var(--primary-dark);
+    font-size: 19px;
+    margin-bottom: 7px;
+}
+
+.section-heading p {
+    color: var(--text-light);
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+
+/* =====================================================
+   INTRODUCCIÓN
+===================================================== */
+
+.schedules-intro {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 20px;
+
+    margin: 30px 0;
+}
+
+
+/* =====================================================
+   ESTADÍSTICAS
+===================================================== */
+
+.statistics-section {
+    margin-bottom: 35px;
+}
+
+.statistics-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.stat-card {
+    background: var(--white);
+
+    padding: 22px;
+
+    border-radius: var(--radius);
+
+    display: flex;
+    align-items: center;
+    gap: 17px;
+
+    box-shadow: var(--shadow);
+    border: 1px solid #F0EBF7;
+}
+
+.stat-icon {
+    width: 48px;
+    height: 48px;
+    min-width: 48px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 12px;
+
+    background: var(--lavender);
+    color: var(--primary);
+
+    font-size: 22px;
+}
+
+.active-icon {
+    background: #E2F5EF;
+    color: var(--green);
+}
+
+.inactive-icon {
+    background: #FFF1DE;
+    color: var(--orange);
+}
+
+.stat-information p {
+    font-size: 12px;
+    color: var(--text-light);
+    margin-bottom: 5px;
+}
+
+.stat-information h3 {
+    font-size: 25px;
+    color: var(--primary-dark);
+    margin-bottom: 4px;
+}
+
+.stat-information span {
+    font-size: 11px;
+    color: var(--text-light);
+}
+
+
+/* =====================================================
+   SECCIÓN DE HORARIOS
+===================================================== */
+
+.schedules-section {
+    background: var(--white);
+
+    padding: 26px;
+
+    border-radius: var(--radius);
+
+    box-shadow: var(--shadow);
+}
+
+.schedules-section > .section-heading {
+    margin-bottom: 23px;
+}
+
+
+/* =====================================================
+   BARRA DE FILTROS
+===================================================== */
+
+.schedules-toolbar {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    margin-bottom: 22px;
+}
+
+.filter-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.filter-container label {
+    font-size: 13px;
+    color: var(--text-light);
+}
+
+.filter-container select {
+    min-width: 165px;
+
+    padding: 10px 12px;
+
+    border: 1px solid var(--border);
+    border-radius: 8px;
+
+    background: var(--white);
+    color: var(--text);
+
+    outline: none;
+    cursor: pointer;
+}
+
+.filter-container select:focus {
+    border-color: var(--primary);
+}
+
+
+/* =====================================================
+   TARJETAS DE HORARIOS
+===================================================== */
+
+.schedules-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+}
+
+
+/*
+   CLASES QUE UTILIZARÁ JAVASCRIPT
+   schedule-card
+   active
+   inactive
+   unconfigured
+*/
+
+.schedule-card {
+    background: var(--white);
+
+    border: 1px solid var(--border);
+    border-radius: 12px;
+
+    padding: 20px;
+
+    min-width: 0;
+
+    transition: 0.2s ease;
+}
+
+.schedule-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow);
+    border-color: #D6C8F3;
+}
+
+
+/* TARJETA ACTIVA */
+
+.schedule-card.active {
+    border-left: 4px solid var(--green);
+}
+
+
+/* TARJETA INACTIVA */
+
+.schedule-card.inactive {
+    border-left: 4px solid var(--orange);
+    background: #FFFCF7;
+}
+
+
+/* TARJETA SIN CONFIGURAR */
+
+.schedule-card.unconfigured {
+    border: 1px dashed #CFC2E9;
+    background: #FCFAFF;
+}
+
+
+/* ENCABEZADO DE TARJETA */
+
+.schedule-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 10px;
+
+    margin-bottom: 20px;
+}
+
+.schedule-day {
+    color: var(--primary-dark);
+    font-size: 17px;
+    font-weight: 700;
+}
+
+
+/* ESTADOS */
+
+.schedule-status {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 6px 10px;
+
+    border-radius: 20px;
+
+    font-size: 10px;
+    font-weight: 700;
+
+    white-space: nowrap;
+}
+
+.schedule-status.active {
+    background: #E2F5EF;
+    color: var(--green);
+}
+
+.schedule-status.inactive {
+    background: #FFF1DE;
+    color: #B87920;
+}
+
+.schedule-status.unconfigured {
+    background: var(--lavender);
+    color: var(--primary-dark);
+}
+
+
+/* INFORMACIÓN DE HORAS */
+
+.schedule-hours {
+    margin-bottom: 13px;
+}
+
+.schedule-hours-label {
+    color: var(--text-light);
+    font-size: 11px;
+    margin-bottom: 7px;
+}
+
+.schedule-hours-value {
+    color: var(--primary-dark);
+    font-size: 21px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+
+
+/* DESCANSO */
+
+.schedule-break {
+    padding: 11px 12px;
+
+    background: #F8F6FC;
+    border-radius: 8px;
+
+    margin-top: 15px;
+}
+
+.schedule-break p {
+    font-size: 11px;
+    color: var(--text-light);
+    margin-bottom: 5px;
+}
+
+.schedule-break strong {
+    font-size: 13px;
+    color: var(--primary-dark);
+}
+
+
+/* MENSAJE SIN DESCANSO */
+
+.schedule-no-break {
+    color: var(--text-light);
+    font-size: 12px;
+    margin-top: 15px;
+}
+
+
+/* DÍA SIN CONFIGURAR */
+
+.schedule-empty {
+    color: var(--text-light);
+    font-size: 12px;
+    line-height: 1.6;
+    margin-bottom: 18px;
+}
+
+
+/* =====================================================
+   ACCIONES DE TARJETAS
+===================================================== */
+
+.schedule-actions {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+
+    margin-top: 20px;
+    padding-top: 15px;
+
+    border-top: 1px solid var(--border);
+}
+
+.schedule-actions button {
+    flex: 1;
+
+    padding: 9px 8px;
+
+    border-radius: 7px;
+
+    font-size: 11px;
+    font-weight: 600;
+
+    transition: 0.2s ease;
+}
+
+.edit-schedule-button {
+    background: var(--lavender);
+    border: 1px solid transparent;
+    color: var(--primary-dark);
+}
+
+.edit-schedule-button:hover {
+    background: #DDD0FF;
+}
+
+.toggle-schedule-button {
+    background: var(--white);
+    border: 1px solid var(--border);
+    color: var(--text);
+}
+
+.toggle-schedule-button:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+}
+
+.add-schedule-button {
+    width: 100%;
+
+    padding: 11px;
+
+    border-radius: 8px;
+
+    border: 1px solid var(--primary);
+    background: var(--white);
+
+    color: var(--primary);
+
+    font-size: 12px;
+    font-weight: 700;
+
+    transition: 0.2s ease;
+}
+
+.add-schedule-button:hover {
+    background: var(--lavender);
+}
+
+
+/* =====================================================
+   BOTONES GENERALES
+===================================================== */
+
+.primary-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    padding: 12px 19px;
+
+    border: none;
+    border-radius: 9px;
+
+    background: var(--primary);
+    color: var(--white);
+
+    font-size: 13px;
+    font-weight: 600;
+
+    transition: 0.2s ease;
+}
+
+.primary-button:hover {
+    background: var(--primary-dark);
+}
+
+.secondary-button {
+    padding: 12px 19px;
+
+    border: 1px solid var(--border);
+    border-radius: 9px;
+
+    background: var(--white);
+    color: var(--text);
+
+    font-size: 13px;
+    font-weight: 600;
+
+    transition: 0.2s ease;
+}
+
+.secondary-button:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+}
+
+
+/* =====================================================
+   ESTADOS DE CARGA, VACÍO Y ERROR
+===================================================== */
+
+.loading-state,
+.empty-state,
+.error-state {
+    padding: 35px 20px;
+    text-align: center;
+}
+
+.loading-state p {
+    color: var(--text-light);
+    font-size: 13px;
+}
+
+.empty-state h3 {
+    color: var(--primary-dark);
+    font-size: 17px;
+    margin-bottom: 9px;
+}
+
+.empty-state p {
+    color: var(--text-light);
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.empty-icon {
+    font-size: 35px;
+    color: var(--primary);
+    margin-bottom: 15px;
+}
+
+.error-state p {
+    color: var(--danger);
+    font-size: 13px;
+    margin-bottom: 15px;
+}
+
+
+/* =====================================================
+   MODAL
+===================================================== */
+
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+
+    background: rgba(35, 22, 65, 0.55);
+
+    z-index: 1000;
+
+    overflow-y: auto;
+}
+
+.modal-overlay[hidden],
+[hidden] {
+    display: none !important;
+}
+
+.schedule-modal {
+    width: 100%;
+    max-width: 570px;
+
+    max-height: 90vh;
+    overflow-y: auto;
+
+    background: var(--white);
+
+    border-radius: 16px;
+
+    padding: 27px;
+
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.15);
+}
+
+
+/* ENCABEZADO DEL MODAL */
+
+.modal-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+
+    gap: 15px;
+
+    padding-bottom: 20px;
+    margin-bottom: 23px;
+
+    border-bottom: 1px solid var(--border);
+}
+
+.modal-header h2 {
+    color: var(--primary-dark);
+    font-size: 20px;
+    margin-bottom: 7px;
+}
+
+.modal-header p {
+    color: var(--text-light);
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.modal-close {
+    width: 34px;
+    height: 34px;
+
+    border: none;
+    border-radius: 8px;
+
+    background: var(--lavender);
+    color: var(--primary-dark);
+
+    font-size: 23px;
+    line-height: 1;
+}
+
+.modal-close:hover {
+    background: #DDD0FF;
+}
+
+
+/* =====================================================
+   FORMULARIOS
+===================================================== */
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    margin-bottom: 19px;
+}
+
+.form-group label {
+    color: var(--primary-dark);
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+
+    padding: 12px 13px;
+
+    border: 1px solid var(--border);
+    border-radius: 8px;
+
+    background: var(--white);
+    color: var(--text);
+
+    outline: none;
+
+    font-size: 13px;
+
+    transition: 0.2s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(105, 56, 211, 0.09);
+}
+
+
+/* SECCIONES DEL FORMULARIO */
+
+.form-section {
+    padding: 18px;
+
+    background: #FCFAFF;
+
+    border: 1px solid var(--border);
+    border-radius: 11px;
+
+    margin-bottom: 19px;
+}
+
+.form-section > h3,
+.rest-heading h3 {
+    color: var(--primary-dark);
+    font-size: 14px;
+    margin-bottom: 6px;
+}
+
+.form-section > p,
+.rest-heading p {
+    color: var(--text-light);
+    font-size: 11px;
+    line-height: 1.5;
+    margin-bottom: 16px;
+}
+
+
+/* DOS COLUMNAS */
+
+.form-row {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+}
+
+.form-row .form-group {
+    margin-bottom: 0;
+}
+
+
+/* =====================================================
+   DESCANSO OPCIONAL
+===================================================== */
+
+.rest-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 15px;
+}
+
+.rest-heading p {
+    margin-bottom: 0;
+}
+
+
+/* INTERRUPTOR */
+
+.switch-container {
+    position: relative;
+
+    display: inline-flex;
+
+    width: 45px;
+    height: 25px;
+
+    flex-shrink: 0;
+}
+
+.switch-container input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.switch-slider {
+    position: absolute;
+    inset: 0;
+
+    background: #D8D2E2;
+
+    border-radius: 30px;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.switch-slider::before {
+    content: "";
+
+    position: absolute;
+
+    width: 19px;
+    height: 19px;
+
+    left: 3px;
+    top: 3px;
+
+    background: var(--white);
+
+    border-radius: 50%;
+
+    transition: 0.2s ease;
+}
+
+.switch-container input:checked + .switch-slider {
+    background: var(--primary);
+}
+
+.switch-container input:checked + .switch-slider::before {
+    transform: translateX(20px);
+}
+
+.switch-container input:focus-visible + .switch-slider {
+    outline: 3px solid rgba(105, 56, 211, 0.25);
+}
+
+
+/* CAMPOS DE DESCANSO */
+
+.break-fields {
+    margin-top: 19px;
+    padding-top: 17px;
+
+    border-top: 1px solid var(--border);
+}
+
+
+/* =====================================================
+   MENSAJES DEL FORMULARIO
+===================================================== */
+
+.form-message {
+    padding: 12px 14px;
+
+    border-radius: 8px;
+
+    font-size: 12px;
+    line-height: 1.6;
+
+    margin-bottom: 18px;
+}
+
+.form-message.error {
+    background: #FFF0F0;
+    border: 1px solid #F2CACA;
+    color: #B33B3B;
+}
+
+.form-message.success {
+    background: #EAF8F3;
+    border: 1px solid #BFE7D8;
+    color: #16795F;
+}
+
+
+/* =====================================================
+   BOTONES DEL MODAL
+===================================================== */
+
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+
+    padding-top: 5px;
+}
+
+
+/* =====================================================
+   RESPONSIVE: TABLETS
+===================================================== */
+
+@media (max-width: 1100px) {
+
+    .main-content {
+        padding: 28px 25px;
+    }
+
+    .schedules-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .statistics-grid {
+        gap: 12px;
+    }
+
+    .stat-card {
+        padding: 17px;
+    }
+
+}
+
+
+/* =====================================================
+   RESPONSIVE: TABLETS PEQUEÑAS
+===================================================== */
+
+@media (max-width: 850px) {
+
+    .sidebar {
+        width: 215px;
+        min-width: 215px;
+    }
+
+    .main-content {
+        width: calc(100% - 215px);
+        margin-left: 215px;
+
+        padding: 25px 18px;
+    }
+
+    .statistics-grid {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+
+/* =====================================================
+   RESPONSIVE: MÓVILES
+===================================================== */
+
+@media (max-width: 600px) {
+
+    .dashboard {
+        display: block;
+    }
+
+    .sidebar {
+        position: relative;
+
+        width: 100%;
+        min-width: 0;
+
+        padding: 17px;
+
+        min-height: auto;
+    }
+
+    .sidebar-brand {
+        padding: 5px 8px 17px;
+    }
+
+    .sidebar-nav {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 7px;
+    }
+
+    .nav-link {
+        padding: 10px 9px;
+        font-size: 12px;
+        gap: 7px;
+    }
+
+    .nav-link span {
+        font-size: 16px;
+        width: 19px;
+    }
+
+    .sidebar-bottom {
+        margin-top: 15px;
+        padding-top: 10px;
+    }
+
+    .main-content {
+        width: 100%;
+        margin-left: 0;
+
+        padding: 22px 15px;
+    }
+
+    .topbar {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 17px;
+    }
+
+    .topbar-heading h1 {
+        font-size: 24px;
+    }
+
+    .schedules-intro {
+        margin: 23px 0;
+    }
+
+    .statistics-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .schedules-section {
+        padding: 18px 13px;
+    }
+
+    .schedules-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .schedules-toolbar {
+        justify-content: flex-start;
+    }
+
+    .filter-container {
+        width: 100%;
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .filter-container select {
+        width: 100%;
+    }
+
+    .schedule-modal {
+        padding: 20px 16px;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    .form-row .form-group {
+        margin-bottom: 16px;
+    }
+
+    .form-row .form-group:last-child {
+        margin-bottom: 0;
+    }
+
+    .modal-actions {
+        flex-direction: column-reverse;
+    }
+
+    .modal-actions button {
+        width: 100%;
+    }
+
+}
+
+
+/* =====================================================
+   ACCESIBILIDAD
+===================================================== */
+
+button:focus-visible,
+a:focus-visible,
+select:focus-visible,
+input:focus-visible {
+    outline: 3px solid rgba(105, 56, 211, 0.25);
+    outline-offset: 2px;
+}
