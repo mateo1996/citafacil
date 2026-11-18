@@ -10,6 +10,11 @@ El proyecto está organizado en tres componentes:
 - **Frontend:** interfaz web desarrollada con HTML, CSS, JavaScript y Flask.
 - **Proxy:** intermediario que conecta el frontend con el backend.
 
+Comando para iniciar todos los servicios:
+Se debe ingresar desde el lugar donde esta el servicio,
+Comando: py app.py
+Para el Proxy: py proxy.py
+
 ### Puertos locales
 
 | Componente | Dirección |
